@@ -6,7 +6,8 @@
     "dev": "NODE_ENV=development nodemon ./bin/www",
     "gulp": "gulp",
     "start": "node ./bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "gulp watch"
   },
   "dependencies": {
     "body-parser": "~1.15.2",
