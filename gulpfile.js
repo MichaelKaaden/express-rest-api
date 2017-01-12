@@ -4,6 +4,7 @@ const runSequence = require('run-sequence');
 const ts = require('gulp-typescript');
 const tslint = require('gulp-tslint');
 
+const publicGlob = 'public/**';
 const tsGlob = 'src/**/*.ts';
 const viewGlob = 'views/**/*.pug';
 const dest = 'dist';
@@ -15,6 +16,12 @@ const tsProject = ts.createProject('tsconfig.json');
 gulp.task('sources', ['tslint'], function () {
     const tsResult = tsProject.src().pipe(tsProject());
     return tsResult.js.pipe(gulp.dest(dest));
+});
+
+gulp.task('public', function () {
+    return gulp
+        .src(publicGlob)
+        .pipe(gulp.dest(dest + '/public'));
 });
 
 gulp.task('tslint', function () {
@@ -36,16 +43,11 @@ gulp.task('views', function () {
         .pipe(gulp.dest(dest + '/views'));
 });
 
-gulp.task('watchOld', ['clean:dist', 'sources', 'views'], function () {
-    gulp.watch(tsGlob, ['sources']);
-    gulp.watch(viewGlob, ['views']);
-});
-
 gulp.task('watch', function (callback) {
     // first, do the clean, then, in parallel, run the compile and copy tasks
     runSequence(
         'clean:dist',
-        ['sources', 'views'],
+        ['public', 'sources', 'views'],
         callback);
     gulp.watch(tsGlob, ['sources']);
     gulp.watch(viewGlob, ['views']);
@@ -59,6 +61,6 @@ gulp.task('default', function (callback) {
     // first, do the clean, then, in parallel, run the compile and copy tasks
     runSequence(
         'clean:dist',
-        ['sources', 'views'],
+        ['public', 'sources', 'views'],
         callback);
 });
