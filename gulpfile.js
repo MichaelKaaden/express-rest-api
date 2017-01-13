@@ -28,7 +28,7 @@ gulp.task('tslint', function () {
         return gulp
             .src(tsGlob)
             .pipe(tslint({
-                formatter: 'verbose'
+                formatter: 'stylish'
             }))
             .pipe(tslint.report({
                 emitError: false,
