@@ -1,9 +1,14 @@
-var express = require('express');
-var router = express.Router();
+import { NextFunction, Request, Response, Router } from 'express';
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+import { BaseRoute } from './base-route';
 
-module.exports = router;
+export class UsersRoute extends BaseRoute {
+
+    public static create(router: Router) {
+        /* GET users listing. */
+        router.get('/users', (req: Request, res: Response, next: NextFunction) => {
+                res.send('respond with a resource');
+            }
+        );
+    }
+}

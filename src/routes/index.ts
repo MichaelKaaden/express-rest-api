@@ -1,9 +1,19 @@
-var express = require('express');
-var router = express.Router();
+import { NextFunction, Request, Response, Router } from 'express';
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+import { IndexController } from '../controllers/index-controller';
+import { BaseRoute } from './base-route';
 
-module.exports = router;
+export class IndexRoute extends BaseRoute {
+
+    public static create(router: Router) {
+        let indexController = new IndexController();
+
+        /* GET home page. */
+        router.get('/', (req: Request, res: Response, next: NextFunction) => {
+            res.render('index', {
+                title: 'Express',
+                date: indexController.getDate()
+            });
+        });
+    }
+}
