@@ -1,12 +1,12 @@
 import * as bodyParser from "body-parser";
 import * as cookieParser from "cookie-parser";
 import * as express from "express";
-import * as favicon from "serve-favicon";
 import * as logger from "morgan";
 import * as path from "path";
+import * as favicon from "serve-favicon";
 
-import {IndexRoute} from "./routes/index"
-import {UsersRoute} from "./routes/users"
+import {IndexRoute} from "./routes/index";
+import {UsersRoute} from "./routes/users";
 
 export class App {
     public static BootstrapExpressApp() {
@@ -29,14 +29,14 @@ export class App {
         this.app.use(cookieParser());
         this.app.use(express.static(path.join(__dirname, "public")));
 
-        let router = express.Router();
+        const router = express.Router();
         IndexRoute.create(router);
         UsersRoute.create(router);
         this.app.use(router);
 
         // catch 404 and forward to error handler
         this.app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
-            let err = new Error("Not Found");
+            const err = new Error("Not Found");
             next(err);
         });
 

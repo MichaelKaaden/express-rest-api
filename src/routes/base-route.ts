@@ -1,6 +1,10 @@
 import { Request, Response, Router } from "express";
 
 export class BaseRoute {
+    public static create(router: Router) {
+        throw Error("Seems you forgot to implement the create method!");
+    }
+
     protected title: string;
 
     /**
@@ -9,10 +13,6 @@ export class BaseRoute {
      */
     constructor() {
         this.title = "My Sample App";
-    }
-
-    public static create(router: Router) {
-        throw Error("Seems you forgot to implement the create method!");
     }
 
     /**
