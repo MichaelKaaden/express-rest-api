@@ -16,4 +16,8 @@ export class IndexRoute extends BaseRoute {
             });
         });
     }
+
+    constructor() {
+        super();
+    }
 }
