@@ -5,14 +5,16 @@ import * as logger from "morgan";
 import * as path from "path";
 import * as favicon from "serve-favicon";
 
-import { IndexRoute } from "./routes/index";
-import { UsersRoute } from "./routes/users";
+import { IndexController } from './controllers/index-controller';
+import { UsersController } from './controllers/users-controller';
 
 class App {
     public app: express.Application;
 
     constructor() {
         this.app = express();
+        const indexController = new IndexController();
+        const usersController = new UsersController();
 
         // view engine setup
         this.app.set("views", path.join(__dirname, "../views"));
@@ -25,10 +27,10 @@ class App {
         this.app.use(cookieParser());
         this.app.use(express.static(path.join(__dirname, "public")));
 
-        const router = express.Router();
-        IndexRoute.create(router);
-        UsersRoute.create(router);
-        this.app.use(router);
+        // Don't *ever* forget this bind(...)! Without it, the "this" pointer
+        // inside the controller would be totally wrong!
+        this.app.get("/", indexController.getDate.bind(indexController));
+        this.app.get("/users", usersController.getUsers.bind(usersController));
 
         // catch 404 and forward to error handler
         this.app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {

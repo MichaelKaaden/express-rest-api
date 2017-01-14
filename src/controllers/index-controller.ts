@@ -1,3 +1,5 @@
+import { NextFunction, Request, Response, Router } from "express";
+
 export class IndexController {
     private date: Date;
 
@@ -5,7 +7,10 @@ export class IndexController {
         this.date = new Date();
     }
 
-    public getDate(): Date {
-        return this.date;
+    public getDate(req: Request, res: Response, next: NextFunction): void {
+        res.render("index", {
+            date: this.date,
+            title: "Express",
+        });
     }
 }
