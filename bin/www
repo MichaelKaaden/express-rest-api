@@ -4,8 +4,7 @@
  * Module dependencies.
  */
 
-var app = require('../dist/app');
-app = app.App.BootstrapExpressApp().app;
+var app = require('../dist/app').default;
 var debug = require('debug')('express-rest-api:server');
 var http = require('http');
 

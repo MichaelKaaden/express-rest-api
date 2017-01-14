@@ -5,14 +5,10 @@ import * as logger from "morgan";
 import * as path from "path";
 import * as favicon from "serve-favicon";
 
-import {IndexRoute} from "./routes/index";
-import {UsersRoute} from "./routes/users";
+import { IndexRoute } from "./routes/index";
+import { UsersRoute } from "./routes/users";
 
-export class App {
-    public static BootstrapExpressApp() {
-        return new App();
-    }
-
+class App {
     public app: express.Application;
 
     constructor() {
@@ -52,3 +48,5 @@ export class App {
         });
     }
 }
+
+export default new App().app;
