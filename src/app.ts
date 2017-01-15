@@ -13,8 +13,6 @@ class App {
 
     constructor() {
         this.app = express();
-        const dateController = new DateController();
-        const usersController = new UsersController();
 
         // view engine setup
         this.app.set("views", path.join(__dirname, "../views"));
@@ -26,6 +24,10 @@ class App {
         this.app.use(bodyParser.urlencoded({extended: false}));
         this.app.use(cookieParser());
         this.app.use(express.static(path.join(__dirname, "public")));
+
+        // my own controllers used in routing
+        const dateController = new DateController();
+        const usersController = new UsersController();
 
         // Don't *ever* forget this bind(...)! Without it, the "this" pointer
         // inside the controller would be totally wrong!
