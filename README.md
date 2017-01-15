@@ -7,6 +7,4 @@ being served using Node.js and Express.js.
 
 This seed uses Swagger-UI for documentation purposes. As
 [this stackoverflow answer](http://stackoverflow.com/questions/31300756/can-swagger-autogenerate-its-yaml-based-on-existing-express-routes)
-suggests, you need to create the swagger.json for yourself.
-Else you'd need to use the swagger utilities inside your Express
-application instead of using vanilla Express.
+suggests, you need to create the swagger.json manually.
