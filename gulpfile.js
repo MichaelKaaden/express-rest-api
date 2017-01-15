@@ -49,6 +49,7 @@ gulp.task('watch', function (callback) {
         'clean:dist',
         ['public', 'sources', 'views'],
         callback);
+    gulp.watch(publicGlob, ['public']);
     gulp.watch(tsGlob, ['sources']);
     gulp.watch(viewGlob, ['views']);
 });
