@@ -5,7 +5,7 @@ import * as logger from "morgan";
 import * as path from "path";
 import * as favicon from "serve-favicon";
 
-import { IndexController } from './controllers/index-controller';
+import { DateController } from './controllers/date-controller';
 import { UsersController } from './controllers/users-controller';
 
 class App {
@@ -13,7 +13,7 @@ class App {
 
     constructor() {
         this.app = express();
-        const indexController = new IndexController();
+        const dateController = new DateController();
         const usersController = new UsersController();
 
         // view engine setup
@@ -29,7 +29,7 @@ class App {
 
         // Don't *ever* forget this bind(...)! Without it, the "this" pointer
         // inside the controller would be totally wrong!
-        this.app.get("/", indexController.getDate.bind(indexController));
+        this.app.get("/date", dateController.getDate.bind(dateController));
         this.app.get("/users", usersController.getUsers.bind(usersController));
 
         // catch 404 and forward to error handler

@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response, Router } from "express";
 
-export class IndexController {
+export class DateController {
     private date: Date;
 
     constructor() {
@@ -8,9 +8,9 @@ export class IndexController {
     }
 
     public getDate(req: Request, res: Response, next: NextFunction): void {
-        res.render("index", {
+        res.render("date", {
             date: this.date,
-            title: "Express",
+            title: "Date Controller Test",
         });
     }
 }
