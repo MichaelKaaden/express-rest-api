@@ -38,7 +38,11 @@
       if (url && url.length > 1) {
         url = decodeURIComponent(url[1]);
       } else {
-        url = "http://petstore.swagger.io/v2/swagger.json";
+          var server = location.protocol
+              + '//'
+              + location.hostname
+              + (location.port ? ':' + location.port: '');
+          url = server + "/swagger.json";
       }
 
       hljs.configure({
