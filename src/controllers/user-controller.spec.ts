@@ -28,7 +28,27 @@ describe("User controller", () => {
             .get("/users")
             .end((err, response) => {
                 expect(err).to.be.null;
+                expect(response.body).to.be.an('object');
+                done();
+            });
+    });
+
+    it("GET should return a message", (done) => {
+        chai.request(app)
+            .get("/users")
+            .end((err, response) => {
+                expect(err).to.be.null;
                 expect(response.body.message).to.equal("okay");
+                done();
+            });
+    });
+
+    it("GET should return a greeting", (done) => {
+        chai.request(app)
+            .get("/users")
+            .end((err, response) => {
+                expect(err).to.be.null;
+                expect(response.body.data.greeting).to.equal("Hello World!");
                 done();
             });
     });
