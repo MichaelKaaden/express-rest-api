@@ -5,8 +5,8 @@ import * as logger from "morgan";
 import * as path from "path";
 import * as favicon from "serve-favicon";
 
-import { DateController } from './controllers/date-controller';
-import { UsersController } from './controllers/users-controller';
+import { DateController } from "./controllers/date-controller";
+import { UsersController } from "./controllers/users-controller";
 
 class App {
     public app: express.Application;

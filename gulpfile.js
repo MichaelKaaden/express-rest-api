@@ -48,9 +48,9 @@ gulp.task('views', function () {
         .pipe(gulp.dest(dest + '/views'));
 });
 
-gulp.task('test', function() {
-    return gulp.src(['dist/src/**/*.spec.js'], { read: false })
-        .pipe(mocha({ reporter: 'spec' }))
+gulp.task('test', ['sources'], function () {
+    return gulp.src(['dist/src/**/*.spec.js'], {read: false})
+        .pipe(mocha({reporter: 'spec'}))
         .on('error', gutil.log);
 });
 
@@ -73,6 +73,7 @@ gulp.task('default', function (callback) {
     // first, do the clean, then, in parallel, run the compile and copy tasks
     runSequence(
         'clean:dist',
-        ['public', 'sources', 'views', 'test'],
+        ['public', 'sources', 'views'],
+        ['test'],
         callback);
 });
