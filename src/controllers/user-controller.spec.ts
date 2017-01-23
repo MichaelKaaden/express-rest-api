@@ -8,11 +8,13 @@ chai.use(chaiHttp);
 const expect = chai.expect;
 
 describe("User controller", () => {
-    it("GET should return JSON", () => {
+    it("GET should return JSON", (done) => {
         chai.request(app)
             .get("/users")
-            .then((response) => {
+            .end((err, response) => {
+                expect(err).to.be.null;
                 expect(response).to.be.json;
+                done();
             });
     });
 
