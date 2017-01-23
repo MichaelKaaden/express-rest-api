@@ -11,16 +11,19 @@ describe("User controller", () => {
     it("GET should return JSON", () => {
         chai.request(app)
             .get("/users")
-            .then(res =>
-                console.log("foo!")
-            )
+            .then(response => {
+                    expect(response).to.be.json;
+                }
+            );
     });
 
-    it('GET should return an object', () => {
+    it('GET should return an object', (done) => {
         chai.request(app)
             .get("/users")
-            .end((err, result: any) => {
-                expect(result.message).to.equal("okay");
+            .end((err, response) => {
+                expect(err).to.be.null;
+                expect(response.body.message).to.eql("okay");
+                done();
             });
     });
 });
