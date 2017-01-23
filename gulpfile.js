@@ -59,6 +59,7 @@ gulp.task('watch', function (callback) {
     runSequence(
         'clean:dist',
         ['public', 'sources', 'views'],
+        'test',
         callback);
     gulp.watch(publicGlob, ['public']);
     gulp.watch(tsGlob, ['sources', 'test']);
@@ -74,6 +75,6 @@ gulp.task('default', function (callback) {
     runSequence(
         'clean:dist',
         ['public', 'sources', 'views'],
-        ['test'],
+        'test',
         callback);
 });
