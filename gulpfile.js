@@ -54,6 +54,17 @@ gulp.task('test', ['sources'], function () {
         .on('error', gutil.log);
 });
 
+// same as task 'test', but will exit properly
+// see https://github.com/sindresorhus/gulp-mocha#test-suite-not-exiting
+gulp.task('exitingTest', ['sources'], function () {
+    return gulp.src(['dist/src/**/*.spec.js'], {read: false})
+        .pipe(mocha({reporter: 'spec'}))
+        .on('error', gutil.log)
+        .once('end', function () {
+            process.exit();
+        });
+});
+
 gulp.task('watch', function (callback) {
     // first, do the clean, then, in parallel, run the compile and copy tasks
     runSequence(
@@ -75,6 +86,6 @@ gulp.task('default', function (callback) {
     runSequence(
         'clean:dist',
         ['public', 'sources', 'views'],
-        'test',
+        'exitingTest',
         callback);
 });
