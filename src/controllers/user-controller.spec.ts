@@ -7,6 +7,11 @@ import app from "../../src/app";
 chai.use(chaiHttp);
 const expect = chai.expect;
 
+// let app: express.Application;
+// beforeEach('load app', () => {
+//     app = require("../app").default;
+// });
+
 describe("User controller", () => {
     it("GET should return JSON", (done) => {
         chai.request(app)
