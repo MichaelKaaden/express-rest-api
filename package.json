@@ -1,12 +1,12 @@
 {
   "name": "express-rest-api",
-  "version": "0.0.0",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "dev": "NODE_ENV=development nodemon ./bin/www",
     "gulp": "gulp",
     "start": "node ./bin/www",
-    "test": "mocha dist/test/**/*.spec.js",
+    "test": "mocha dist/src/**/*.spec.js",
     "watch": "gulp watch"
   },
   "dependencies": {
@@ -36,6 +36,7 @@
     "gulp-mocha": "^3.0.1",
     "gulp-tslint": "^7.0.1",
     "gulp-typescript": "^3.1.4",
+    "gulp-util": "^3.0.8",
     "mocha": "^3.2.0",
     "nodemon": "^1.11.0",
     "run-sequence": "^1.2.2",

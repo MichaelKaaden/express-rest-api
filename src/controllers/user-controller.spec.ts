@@ -13,12 +13,41 @@ const expect = chai.expect;
 // });
 
 describe("User controller", () => {
-    it("GET should return JSON", (done) => {
+    it("should not fail", (done) => {
         chai.request(app)
             .get("/users")
             .end((err, response) => {
                 expect(err).to.be.null;
+                done();
+            });
+    });
+
+    it("should return status 200", (done) => {
+        chai.request(app)
+            .get("/users")
+            .end((err, response) => {
+                expect(response).to.have.status(200);
+                done();
+            });
+    });
+
+    it("GET should return JSON", (done) => {
+        chai.request(app)
+            .get("/users")
+            .end((err, response) => {
                 expect(response).to.be.json;
+                done();
+            });
+    });
+
+    it("should use UTF-8", (done) => {
+        chai.request(app)
+            .get("/users")
+            .end((err, response) => {
+                // this isn't defined in the Response type, so I'll use any instead
+                const specialResponse: any = response;
+                expect(specialResponse.charset).to.be.equal("utf-8");
+                expect(specialResponse.headers["content-type"]).to.contain("utf-8");
                 done();
             });
     });
@@ -27,8 +56,7 @@ describe("User controller", () => {
         chai.request(app)
             .get("/users")
             .end((err, response) => {
-                expect(err).to.be.null;
-                expect(response.body).to.be.an('object');
+                expect(response.body).to.be.an("object");
                 done();
             });
     });
@@ -37,7 +65,6 @@ describe("User controller", () => {
         chai.request(app)
             .get("/users")
             .end((err, response) => {
-                expect(err).to.be.null;
                 expect(response.body.message).to.equal("okay");
                 done();
             });
@@ -47,7 +74,6 @@ describe("User controller", () => {
         chai.request(app)
             .get("/users")
             .end((err, response) => {
-                expect(err).to.be.null;
                 expect(response.body.data.greeting).to.equal("Hello World!");
                 done();
             });
