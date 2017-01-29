@@ -28,7 +28,7 @@ describe("User controller", () => {
             .get("/users")
             .end((err, response) => {
                 expect(err).to.be.null;
-                expect(response.body).to.be.an('object');
+                expect(response.body).to.be.an("object");
                 done();
             });
     });
