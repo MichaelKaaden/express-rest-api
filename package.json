@@ -1,6 +1,6 @@
 {
   "name": "express-rest-api",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "scripts": {
     "dev": "NODE_ENV=development nodemon ./bin/www",
@@ -33,6 +33,7 @@
     "chai-http": "^3.0.0",
     "del": "^2.2.2",
     "gulp": "^3.9.1",
+    "gulp-bump": "^2.6.1",
     "gulp-mocha": "^3.0.1",
     "gulp-tslint": "^7.0.1",
     "gulp-typescript": "^3.1.4",
