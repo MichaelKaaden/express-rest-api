@@ -1,6 +1,7 @@
 'use strict';
 
 const gulp = require('gulp');
+const bump = require('gulp-bump');
 const del = require('del');
 const gutil = require('gulp-util');
 const mocha = require('gulp-mocha');
@@ -10,6 +11,8 @@ const tslint = require('gulp-tslint');
 
 const dest = 'dist';
 const sourceDest = dest + '/src';
+
+const bumpSrc = './package.json';
 
 const publicGlob = 'public/**';
 const specGlob = sourceDest + '/**/*.spec.js';
@@ -81,6 +84,30 @@ gulp.task('clean:dist', function () {
 
 gulp.task('clean:test', function () {
     return del.sync(specGlob);
+});
+
+/*
+ * Handle version numbers
+ */
+gulp.task('bump:major', function () {
+    gulp.src(bumpSrc)
+        .pipe(bump({type: 'major'}))
+        .pipe(gulp.dest('./'));
+});
+gulp.task('bump:minor', function () {
+    gulp.src(bumpSrc)
+        .pipe(bump({type: 'minor'}))
+        .pipe(gulp.dest('./'));
+});
+gulp.task('bump:patch', function () {
+    gulp.src(bumpSrc)
+        .pipe(bump({type: 'patch'}))
+        .pipe(gulp.dest('./'));
+});
+gulp.task('bump:prerelease', function () {
+    gulp.src(bumpSrc)
+        .pipe(bump({type: 'prerelease'}))
+        .pipe(gulp.dest('./'));
 });
 
 gulp.task('default', function (callback) {
