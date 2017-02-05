@@ -31,6 +31,8 @@ class App {
         // authentication via Passport
         this.app.use(passport.initialize());
         const opts: passportJwt.StrategyOptions = {
+            // the client needs to set the "Authorization" header
+            // with value "JWT the-token"
             jwtFromRequest: passportJwt.ExtractJwt.fromAuthHeader(),
             secretOrKey: "foo!",
         };
