@@ -37,7 +37,7 @@ export class AuthController extends BaseController {
         if (!user) {
             res.status(401).send({message: "User not found"});
         } else {
-            const token = jwt.encode(user, "foo!");  // encode the user object with this secret ...
+            const token = jwt.encode(user, this._configuration.secret);  // encode the user object with this secret ...
             res.json(200, {token: `JWT ${token}`});  // ... and send it back
         }
     }

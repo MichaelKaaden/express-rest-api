@@ -7,6 +7,8 @@ import * as passportJwt from "passport-jwt";
 import * as path from "path";
 import * as favicon from "serve-favicon";
 
+import { AppConfiguration } from "./config/app-configuration";
+
 import { AuthController } from "./controllers/auth-controller";
 import { DateController } from "./controllers/date-controller";
 import { UsersController } from "./controllers/users-controller";
@@ -15,6 +17,7 @@ class App {
     public app: express.Application;
 
     constructor() {
+        const configuration = new AppConfiguration();
         this.app = express();
 
         // view engine setup
@@ -34,7 +37,7 @@ class App {
             // the client needs to set the "Authorization" header
             // with value "JWT the-token"
             jwtFromRequest: passportJwt.ExtractJwt.fromAuthHeader(),
-            secretOrKey: "foo!",
+            secretOrKey: configuration.secret,
         };
         passport.use(new passportJwt.Strategy(opts, (jwtPayload, done) => {
             done(null, {jwtUser: jwtPayload});  // return the token's contents as req.user.jwtUser
