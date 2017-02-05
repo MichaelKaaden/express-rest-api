@@ -8,8 +8,8 @@ export class DateController {
     }
 
     public getDate(req: Request, res: Response, next: NextFunction): void {
-        console.log("authenticated user (retrieved from token)", req.user["jwtUser"]);
-        let user = req.user["jwtUser"];
+        console.log("authenticated user (retrieved from token)", req.user.jwtUser);
+        const user = req.user.jwtUser;
         res.render("date", {
             date: this.date,
             title: `Date Controller Test for ${user.name}`,
