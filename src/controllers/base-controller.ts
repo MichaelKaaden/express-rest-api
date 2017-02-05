@@ -1,7 +1,16 @@
 import { NextFunction, Request, Response, Router } from "express";
 
+import { AppConfiguration } from "../config/app-configuration";
+
 export abstract class BaseController {
+    protected _configuration;
+
+    constructor() {
+        this._configuration = new AppConfiguration();
+    }
+
     /**
+     *
      * Send a result as JSON enforcing the use of a defined envelope.
      * The envelope always contains a message and the data.
      * @param res {Response} The response object.
