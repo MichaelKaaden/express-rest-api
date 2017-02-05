@@ -27,11 +27,11 @@ export class AuthController extends BaseController {
     }
 
     public authenticate(req: Request, res: Response, next: NextFunction): void {
-        const name = req.body.name;
+        const username = req.body.username;
         const password = req.body.password;
 
-        let user = this._fakeUsers.find((elem, index, array) => {
-            return elem.name === name && elem.password === password;
+        const user = this._fakeUsers.find((elem, index, array) => {
+            return elem.name === username && elem.password === password;
         });
 
         if (!user) {
