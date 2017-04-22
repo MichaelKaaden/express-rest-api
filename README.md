@@ -3,8 +3,10 @@
 This little project can be used as seed for any REST API
 written using TypeScript, Node.js and Express.js.
 
-Run the app in dev mode using `npm run dev`. To compile
-the sources on change, use `npm run watch`.
+To compile the app initially, use `npm run gulp`.
+To automatically compile the sources on each 
+change, use `npm run watch`.
+Run the app in dev mode using `npm run dev`. 
 
 ## API Documentation
 
