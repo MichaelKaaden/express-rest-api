@@ -7,7 +7,7 @@
     "gulp": "gulp",
     "start": "node ./bin/www",
     "test": "mocha dist/src/**/*.spec.js",
-    "watch": "gulp watch"
+    "watch": "gulp watch:dev"
   },
   "dependencies": {
     "body-parser": "~1.15.2",
