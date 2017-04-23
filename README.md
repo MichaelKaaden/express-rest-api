@@ -3,6 +3,13 @@
 This little project can be used as seed for any REST API
 written using TypeScript, Node.js and Express.js.
 
+It was initialized using the express generator. That's the
+reason it still uses the `bin/www` file for startup. I had
+no reason to rewrite this file, because I don't plan to 
+change anything in here. Every other JavaScript file that
+contained application code has been replaced by its
+TypeScript variant, though.
+
 ## Compiling the app
 
 The app is written in TypeScript. You need to compile
@@ -12,6 +19,10 @@ in Node.js.
 To compile the app initially, use `npm run gulp`.
 To automatically compile the sources on each 
 change, use `npm run watch`.
+
+Looking inside the gulpfile.js you'll find some other
+tasks that might help you in developing the application,
+for example `watch:test`.
 
 ## Running the app
 
