@@ -36,7 +36,7 @@ class App {
         const opts: passportJwt.StrategyOptions = {
             // the client needs to set the "Authorization" header
             // with value "JWT the-token"
-            jwtFromRequest: passportJwt.ExtractJwt.fromAuthHeader(),
+            jwtFromRequest: passportJwt.ExtractJwt.fromAuthHeaderWithScheme("jwt"),
             secretOrKey: configuration.secret,
         };
         passport.use(new passportJwt.Strategy(opts, (jwtPayload, done) => {
